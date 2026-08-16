@@ -1,0 +1,15 @@
+# Run both services with:  docker compose up --build
+# API  -> http://localhost:8000/docs
+# UI   -> http://localhost:8501
+services:
+  api:
+    build: .
+    command: uvicorn app:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+
+  web:
+    build: .
+    command: streamlit run app_web.py --server.port=8501 --server.address=0.0.0.0
+    ports:
+      - "8501:8501"
